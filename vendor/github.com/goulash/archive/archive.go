@@ -15,6 +15,7 @@ import (
 	"path"
 
 	lzma "github.com/remyoudompheng/go-liblzma"
+	zstd "github.com/DataDog/zstd"
 )
 
 // ReadFileFromArchive tries to read the file specified from the (compressed) archive.
@@ -94,6 +95,10 @@ func NewDecompressor(filepath string) (*Decompressor, error) {
 		}
 		d.reader = gz
 		d.closer = gz
+	case ".zst":
+		zst := zstd.NewReader(d.file)
+		d.reader = zst
+		d.closer = zst
 	case ".bz2":
 		d.reader = bzip2.NewReader(d.file)
 	case ".tar":

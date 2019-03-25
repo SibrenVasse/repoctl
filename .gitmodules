@@ -1,0 +1,3 @@
+[submodule "vendor/github.com/DataDog/zstd"]
+	path = vendor/github.com/DataDog/zstd
+	url = https://github.com/DataDog/zstd.git
